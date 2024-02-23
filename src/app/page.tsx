@@ -18,10 +18,13 @@ export default function Home() {
         PDFriend lets you summarier PDF documents. Simply upload your file and start right away.
       </p>
 
-      <Link className={buttonVariants({
-        size: 'lg',
-        className: 'mt-5'
-      })} href="/dashboard" target="_blank">
+      <Link 
+        className={buttonVariants({
+          size: 'lg',
+          className: 'mt-5'
+        })} 
+        href="/dashboard" 
+        target="_blank">
         Get Started <ArrowRight className="ml-2 h-5 w-5" />
       </Link>
     </MaxWidthWrapper>
