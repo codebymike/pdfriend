@@ -31,6 +31,7 @@ export default function Home() {
         </Link>
       </MaxWidthWrapper>
 
+      {/* Preview Section */}
       <div>
         <div className="relative isolate">
           <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
@@ -62,6 +63,24 @@ export default function Home() {
             }} className="relative left-[calc(50%-13rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-36rem)] sm:w-[72.1875rem]" />
           </div>
         </div>
+      </div>
+
+
+      {/* Feature Section */}
+      <div className="mx-auto mb-32 mt-32 max-w-5xl sm:mt-56">
+        <div className="mb-12 px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl sm:text-center">
+            <h2 className="mt-2 font-bold text-4xl text-gray-900 sm:text-5xl">
+              Start summarising in minutes
+            </h2>
+            <p className="mt-4 text-lg text-gray-600">
+              Getting important information from documents has never been easier than with PDFriend
+            </p>
+          </div>
+        </div>
+
+        {/* Steps Section */}
+        
       </div>
     </>
   );  
