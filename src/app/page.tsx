@@ -1,6 +1,7 @@
 import Link from "next/link";
 import MaxWidthWrapper from "./components/MaxWidthWrapper";
 import { ArrowRight } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -17,7 +18,10 @@ export default function Home() {
         PDFriend lets you summarier PDF documents. Simply upload your file and start right away.
       </p>
 
-      <Link href="/dashboard" target="_blank">
+      <Link className={buttonVariants({
+        size: 'lg',
+        className: 'mt-5'
+      })} href="/dashboard" target="_blank">
         Get Started <ArrowRight className="ml-2 h-5 w-5" />
       </Link>
     </MaxWidthWrapper>
