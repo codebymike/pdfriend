@@ -2,7 +2,7 @@ import React from 'react'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import Link from 'next/link'
 import { buttonVariants } from './ui/button'
-import { LoginLink} from "@kinde-oss/kinde-auth-nextjs/server";
+import { LoginLink, RegisterLink} from "@kinde-oss/kinde-auth-nextjs/server";
 
 
 const Navbar = () => {
@@ -25,6 +25,11 @@ const Navbar = () => {
                         variant: "ghost",
                         size: "sm"
                     })}>Sign In</LoginLink>
+
+                    <RegisterLink className={buttonVariants({
+                        variant: "ghost",
+                        size: "sm"
+                    })}>Sign In</RegisterLink>
                 </>
                 </div>
             </div>
