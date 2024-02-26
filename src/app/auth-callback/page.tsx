@@ -8,7 +8,7 @@ const page = () => {
     const searchParams = useSearchParams()
     const origin = searchParams.get('origin')
 
-    const {data} = trpc.test.useQuery()
+
 }
 
 export default page
