@@ -8,7 +8,11 @@ const page = () => {
     const searchParams = useSearchParams()
     const origin = searchParams.get('origin')
 
-
+    const { data, isLoading } = trpc.authCallback.useQuery(undefined, {
+        // onSuccess: (data) => {
+        //     router.push( origin? `/{origin}` : '/dashboard' )
+        // }
+    })
 }
 
 export default page
