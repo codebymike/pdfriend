@@ -7,10 +7,16 @@ const page = () => {
     const searchParams = useSearchParams()
     const origin = searchParams.get('origin')
 
-    const { data } = trpc.authCallback.useQuery()
+    const { data, error } = trpc.authCallback.useQuery()
 
     if( data?.success ){
-        router.push( origin? `/{origin}` : '/dashboard' )
+        router.push( origin? `/${origin}` : '/dashboard' )
+    }
+
+    if( error ){
+        if( error.data?.code == "UNAUTHORIZED" ) {
+            router.push("/sign-in")
+        }
     }
 }
 
