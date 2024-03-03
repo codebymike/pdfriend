@@ -1,8 +1,10 @@
+import { trpc } from '../_trpc/client'
 import UploadButton from './UploadButton'
 
 const Dashboard = () => {
 
-    
+    const { data: files, isLoading } = trpc.getUserFiles.useQuery()
+
 
   return (
     <main className="mx-auto max-w-7xl md:p-10">
@@ -13,7 +15,13 @@ const Dashboard = () => {
         </div>
 
         {/* display all files */}
-
+        { files && files?.length > 0 ? (
+            <div></div>
+        ) : isLoading ? (
+            <div></div>
+        ) : (
+            <div></div>
+        )}
 
     </main>
   )
