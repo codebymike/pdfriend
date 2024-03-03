@@ -8,6 +8,10 @@ const Dashboard = () => {
 
             <UploadButton />
         </div>
+
+        {/* display all files */}
+        
+
     </main>
   )
 }
