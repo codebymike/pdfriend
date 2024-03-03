@@ -1,6 +1,6 @@
 'use client'
 
-import { Dialog, DialogTrigger } from "@radix-ui/react-dialog"
+import { Dialog, DialogContent, DialogTrigger } from "@radix-ui/react-dialog"
 import { useState } from "react"
 import { Button } from "./ui/button"
 
@@ -13,9 +13,13 @@ const [isOpen, setIsOpen] = useState<boolean>(false)
                 setIsOpen(v)
             }
         }}>
-            <DialogTrigger asChild>
+            <DialogTrigger onClick={() => setIsOpen(true)} asChild>
                 <Button>Upload PDF</Button>
             </DialogTrigger>
+
+            <DialogContent>
+                Example Content
+            </DialogContent>
         </Dialog>
     )
 }
