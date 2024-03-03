@@ -1,7 +1,11 @@
+'use client'
+
+import { useState } from "react"
+
 const UploadButton = () => {
-  return (
-    <div>UploadButton</div>
-  )
+const [isOpen, setIsOpen] = useState<boolean>(false)
+
+    return (<></>)
 }
 
 export default UploadButton
