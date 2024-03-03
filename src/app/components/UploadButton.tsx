@@ -1,7 +1,8 @@
 'use client'
 
-import { Dialog } from "@radix-ui/react-dialog"
+import { Dialog, DialogTrigger } from "@radix-ui/react-dialog"
 import { useState } from "react"
+import { Button } from "./ui/button"
 
 const UploadButton = () => {
 const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -11,7 +12,11 @@ const [isOpen, setIsOpen] = useState<boolean>(false)
             if(!v) {
                 setIsOpen(v)
             }
-        }}></Dialog>
+        }}>
+            <DialogTrigger asChild>
+                <Button>Upload PDF</Button>
+            </DialogTrigger>
+        </Dialog>
     )
 }
 
