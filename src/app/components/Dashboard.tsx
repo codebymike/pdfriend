@@ -3,8 +3,10 @@
 import { trpc } from '../_trpc/client'
 import UploadButton from './UploadButton'
 import Skeleton from 'react-loading-skeleton'
-import { Ghost, Plus } from 'lucide-react'
+import { Ghost, Plus, Trash } from 'lucide-react'
 import { format } from 'date-fns'
+import { Button } from './ui/button'
+import MessageSquare from './MessageSquare'
 import Link from 'next/link'
 
 const Dashboard = () => {
@@ -49,7 +51,17 @@ const Dashboard = () => {
                                 <Plus className="h-4 w-4" />
                                 {format(new Date(file.createdAt), "MMM yyyy")}
                             </div>
+                            
+                            <div className='flex items-center gap-2'>
+                                <MessageSquare className="h-4 w-4" />
+                                mocked
+                            </div>
+
+                            <Button size="sm" className='w-full' variant='destructive'>
+                                <Trash className='h-4 w-4' />
+                            </Button>
                         </div>
+
                     </li>
                 ))}
             </ul>
