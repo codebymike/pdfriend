@@ -3,7 +3,8 @@
 import { trpc } from '../_trpc/client'
 import UploadButton from './UploadButton'
 import Skeleton from 'react-loading-skeleton'
-import { Ghost } from 'lucide-react'
+import { Ghost, Plus } from 'lucide-react'
+import { format } from 'date-fns'
 import Link from 'next/link'
 
 const Dashboard = () => {
@@ -42,6 +43,13 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </Link>
+
+                        <div className='px-6 mt-4 grid grid-cols-3 place-content-center py-2 gap-6 text-xs text-zinc-500'>
+                            <div className="flex items-center gap-2">
+                                <Plus className="h-4 w-4" />
+                                {format(new Date(file.createdAt), "MMM yyyy")}
+                            </div>
+                        </div>
                     </li>
                 ))}
             </ul>
