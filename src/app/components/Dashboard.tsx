@@ -2,6 +2,7 @@
 
 import { trpc } from '../_trpc/client'
 import UploadButton from './UploadButton'
+import Skeleton from 'react-loading-skeleton'
 import { Ghost } from 'lucide-react'
 
 const Dashboard = () => {
@@ -21,7 +22,7 @@ const Dashboard = () => {
         { files && files?.length > 0 ? (
             <div></div>
         ) : isLoading ? (
-            <div></div>
+            <Skeleton height={100} className='my-2' count={3}/>
         ) : (
             <div className='mt-16 flex flex-col items-center gap-2'>
                 <Ghost className="h-8 w-8 text-zinc-800" />
