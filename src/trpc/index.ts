@@ -47,6 +47,15 @@ export const appRouter = router({
 
     const file = await db.file.findFirst({
       where: {
+        id: input.id,
+        userId,
+      }
+    })
+
+    if(!file) throw new TRPCError({code: "NOT_FOUND"})
+
+    await db.file.delete({
+      where: {
         id: input.id
       }
     })
