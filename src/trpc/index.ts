@@ -59,6 +59,8 @@ export const appRouter = router({
         id: input.id
       }
     })
+
+    return file
   })
 });
 
