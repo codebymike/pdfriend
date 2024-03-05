@@ -8,8 +8,11 @@ import { format } from 'date-fns'
 import { Button } from './ui/button'
 import MessageSquare from './MessageSquare'
 import Link from 'next/link'
+import { useState } from 'react'
 
 const Dashboard = () => {
+
+    const [currentlyDeletingFile, setCurrentlyDeletingFile] = useState<string | null>(null)
 
     const utils = trpc.useContext()
 
@@ -17,6 +20,12 @@ const Dashboard = () => {
     const { mutate: deleteFile } = trpc.deleteFile.useMutation({
         onSuccess: () => {
             utils.getUserFiles.invalidate()
+        },
+        onMutate({id}) {
+            setCurrentlyDeletingFile(id)
+        },
+        onSettled() {
+            setCurrentlyDeletingFile(null)
         }
     })
 
