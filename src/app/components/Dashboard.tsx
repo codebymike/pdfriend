@@ -3,7 +3,7 @@
 import { trpc } from '../_trpc/client'
 import UploadButton from './UploadButton'
 import Skeleton from 'react-loading-skeleton'
-import { Ghost, Plus, Trash } from 'lucide-react'
+import { Ghost, Loader2, Plus, Trash } from 'lucide-react'
 import { format } from 'date-fns'
 import { Button } from './ui/button'
 import MessageSquare from './MessageSquare'
@@ -78,7 +78,9 @@ const Dashboard = () => {
                                 className='w-full' 
                                 variant='destructive'
                             >
-                                <Trash className='h-4 w-4' />
+                                { currentlyDeletingFile === file.id ? (
+                                    <Loader2 className='h-4 w-4 animite-spin' />
+                                ) : <Trash className='h-4 w-4' />}
                             </Button>
                         </div>
 
