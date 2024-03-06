@@ -1,10 +1,14 @@
 interface PageProps {
     params: {
-        fileid: string
+        fileId: string
     }
 }
 
 const page = ({params} : PageProps) => {
+
+    const {fileId} = params
+
+    return fileId
 
 }
 
