@@ -9,7 +9,13 @@ const UploadButton = () => {
 const [isOpen, setIsOpen] = useState<boolean>(false)
 
 const UploadDropZone = () => {
-    return <div></div>
+    return <DropZone multiple={false}>
+        {({ getRootProps, getInputProps, acceptedFiles }) => (
+            <div {...getRootProps()} className="border h-64 m-4 border-dashed border-gray-300 rounded-lg">
+
+            </div>
+        )}
+    </DropZone>
 }
 
     return (
