@@ -3,9 +3,14 @@
 import { Dialog, DialogContent, DialogTrigger } from "@radix-ui/react-dialog"
 import { useState } from "react"
 import { Button } from "./ui/button"
+import DropZone from 'react-dropzone'
 
 const UploadButton = () => {
 const [isOpen, setIsOpen] = useState<boolean>(false)
+
+const UploadDropZone = () => {
+    return <div></div>
+}
 
     return (
         <Dialog open={isOpen} onOpenChange={(v) => {
@@ -18,7 +23,7 @@ const [isOpen, setIsOpen] = useState<boolean>(false)
             </DialogTrigger>
 
             <DialogContent>
-                Example Content
+                <UploadDropZone />
             </DialogContent>
         </Dialog>
     )
