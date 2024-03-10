@@ -12,7 +12,7 @@ const [isOpen, setIsOpen] = useState<boolean>(false)
 
 const UploadDropzone = () => {
 
-    const [isUploading, setIsUploading] = useState<boolean|null>(true)
+    const [isUploading, setIsUploading] = useState<boolean|null>(false)
     const [uploadProgress, setUploadProgress] = useState<number>(0)
 
     const startSimulatedProgress = () => {
@@ -27,10 +27,23 @@ const UploadDropzone = () => {
                 return prevProgress + 5
             })
         }, 500)
+        return interval
     }
 
     return (
-        <DropZone multiple={false}>
+        <DropZone 
+            multiple={false}
+            onDrop={(acceptedFile) => {
+                setIsUploading(true)
+                const progressInterval = startSimulatedProgress()
+
+                //handle file upload
+
+                clearInterval(progressInterval)
+                setUploadProgress(100)
+            }}
+
+        >
             {({ getRootProps, getInputProps, acceptedFiles }) => (
                 <div
                     {...getRootProps()}
@@ -64,7 +77,7 @@ const UploadDropzone = () => {
 
                             { isUploading ? (
                                 <div className="w-full mt-4 max-w-xs mx-auto">
-                                    <Progress value={50} className="h-1 w-full bg-zinc-200" />
+                                    <Progress value={uploadProgress} className="h-1 w-full bg-zinc-200" />
                                 </div>
                             ) : null }
 
