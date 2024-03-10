@@ -10,6 +10,9 @@ const UploadButton = () => {
 const [isOpen, setIsOpen] = useState<boolean>(false)
 
 const UploadDropzone = () => {
+
+    const [isUploading, setIsUploading] = useState<boolean|null>(true)
+
     return (
         <DropZone multiple={false}>
             {({ getRootProps, getInputProps, acceptedFiles }) => (
@@ -42,6 +45,13 @@ const UploadDropzone = () => {
                                     </div>
                                 </div>
                             ) : null }
+
+                            { isUploading ? (
+                                <div className="w-full mt-4 max-w-xs mx-auto">
+                                    
+                                </div>
+                            ) : null }
+
                         </label>
                     </div>
                 </div>
