@@ -6,6 +6,7 @@ import { Button } from "./ui/button"
 import DropZone from 'react-dropzone'
 import { Cloud, File } from "lucide-react"
 import { Progress } from "@radix-ui/react-progress"
+import { useUploadThing } from "@/lib/uploadthing"
 
 const UploadButton = () => {
 const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -14,6 +15,8 @@ const UploadDropzone = () => {
 
     const [isUploading, setIsUploading] = useState<boolean|null>(false)
     const [uploadProgress, setUploadProgress] = useState<number>(0)
+
+    const { startUpload } = useUploadThing("pdfUploader")
 
     const startSimulatedProgress = () => {
         setUploadProgress(0)
@@ -33,11 +36,16 @@ const UploadDropzone = () => {
     return (
         <DropZone 
             multiple={false}
-            onDrop={(acceptedFile) => {
+            onDrop={async (acceptedFile) => {
                 setIsUploading(true)
                 const progressInterval = startSimulatedProgress()
 
                 //handle file upload
+                const res = await startUpload(acceptedFile)
+
+                if( !res ) {
+                    
+                }
 
                 clearInterval(progressInterval)
                 setUploadProgress(100)
