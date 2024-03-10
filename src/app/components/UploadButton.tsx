@@ -5,6 +5,7 @@ import { useState } from "react"
 import { Button } from "./ui/button"
 import DropZone from 'react-dropzone'
 import { Cloud, File } from "lucide-react"
+import { Progress } from "@radix-ui/react-progress"
 
 const UploadButton = () => {
 const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -48,7 +49,7 @@ const UploadDropzone = () => {
 
                             { isUploading ? (
                                 <div className="w-full mt-4 max-w-xs mx-auto">
-                                    
+                                    <Progress value={50} className="h-1 w-full bg-zinc-200" />
                                 </div>
                             ) : null }
 
