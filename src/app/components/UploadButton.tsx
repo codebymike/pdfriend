@@ -25,10 +25,12 @@ const UploadDropzone = () => {
 
     const { startUpload } = useUploadThing("pdfUploader")
 
-    const {} = trpc.getFile.useMutation({
+    const { mutate: startPolling } = trpc.getFile.useMutation({
         onSuccess: (file) => {
             router.push(`/dashboard/${file.id}`)
-        }
+        },
+        retry: true,
+        retryDelay: 500
     })
 
     const startSimulatedProgress = () => {
@@ -74,10 +76,10 @@ const UploadDropzone = () => {
                     })
                 }
 
-                //Poll to check file exists
-
                 clearInterval(progressInterval)
                 setUploadProgress(100)
+
+                startPolling({ key })
             }}
 
         >
