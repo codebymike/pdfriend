@@ -8,11 +8,15 @@ import { Cloud, File } from "lucide-react"
 import { Progress } from "@radix-ui/react-progress"
 import { useUploadThing } from "@/lib/uploadthing"
 import { useToast } from "./ui/use-toast"
+import { trpc } from "../_trpc/client"
+import { useRouter } from "next/navigation"
 
 const UploadButton = () => {
 const [isOpen, setIsOpen] = useState<boolean>(false)
 
 const UploadDropzone = () => {
+
+    const router = useRouter()
 
     const [isUploading, setIsUploading] = useState<boolean|null>(false)
     const [uploadProgress, setUploadProgress] = useState<number>(0)
@@ -20,6 +24,12 @@ const UploadDropzone = () => {
     const { toast } = useToast()
 
     const { startUpload } = useUploadThing("pdfUploader")
+
+    const {} = trpc.getFile.useMutation({
+        onSuccess: (file) => {
+            router.push(`/dashboard/${file.id}`)
+        }
+    })
 
     const startSimulatedProgress = () => {
         setUploadProgress(0)
