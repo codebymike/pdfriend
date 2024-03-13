@@ -8,6 +8,7 @@ import { useToast } from "./ui/use-toast"
 import { useResizeDetector } from "react-resize-detector"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
+import { useState } from "react"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
@@ -19,6 +20,7 @@ const PdfRenderer = ({ url }: PdfRenderProps ) => {
 
   const { toast } = useToast()
   const { width, ref } = useResizeDetector()
+  const [numPages, setNumPages] = useState<number>()
 
   return (
     <div className="w-full bg-white rounded-md shadow flex flex-col items-center">
@@ -53,6 +55,9 @@ const PdfRenderer = ({ url }: PdfRenderProps ) => {
                   description: "Please try again later",
                   variant: "destructive"
                 })
+              }}
+              onLoadSuccess={({numPages}) => {
+                setNumPages(numPages)
               }}
               className="max-h-full"
               >
