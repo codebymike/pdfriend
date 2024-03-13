@@ -9,6 +9,9 @@ import { useResizeDetector } from "react-resize-detector"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
@@ -22,6 +25,19 @@ const PdfRenderer = ({ url }: PdfRenderProps ) => {
   const { width, ref } = useResizeDetector()
   const [ numPages, setNumPages ] = useState<number>()
   const [ currPage, setCurrPage ] = useState<number>(1)
+
+  const CustomPageValidator = z.object({
+    page: z.string().refine((num) => Number(num) > 0 && Number(num) <= numPages!)
+  })
+
+  type TCustomPageValidator = z.infer<typeof CustomPageValidator>
+
+  const {} = useForm<TCustomPageValidator>({
+    defaultValues: {
+      page: "1"
+    },
+    resolver: zodResolver(CustomPageValidator)
+  })
 
   return (
     <div className="w-full bg-white rounded-md shadow flex flex-col items-center">
