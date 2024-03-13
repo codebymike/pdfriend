@@ -7,6 +7,7 @@ import 'react-pdf/dist/esm/Page/TextLayer.css'
 import { useToast } from "./ui/use-toast"
 import { useResizeDetector } from "react-resize-detector"
 import { Button } from "./ui/button"
+import { Input } from "./ui/input"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
@@ -28,7 +29,11 @@ const PdfRenderer = ({ url }: PdfRenderProps ) => {
                 </Button>
 
                 <div className="flex items-center gap-1.5">
-                    
+                    <Input className="w-12 h-8" />
+                    <p className="text-zinc-700 text-sm space-x-1">
+                      <span>/</span>
+                      <span>5</span>
+                    </p>
                 </div>
             </div>
         </div>
