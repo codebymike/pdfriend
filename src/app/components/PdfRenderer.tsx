@@ -12,6 +12,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { cn } from "@/lib/utils"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
@@ -32,12 +33,17 @@ const PdfRenderer = ({ url }: PdfRenderProps ) => {
 
   type TCustomPageValidator = z.infer<typeof CustomPageValidator>
 
-  const {} = useForm<TCustomPageValidator>({
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<TCustomPageValidator>({
     defaultValues: {
       page: "1"
     },
     resolver: zodResolver(CustomPageValidator)
   })
+
+  const handlePageSubmit = ({page}: TCustomPageValidator) => {
+    setCurrPage(Number(page))
+    setValue("page", String(page))
+  }
 
   return (
     <div className="w-full bg-white rounded-md shadow flex flex-col items-center">
@@ -55,7 +61,15 @@ const PdfRenderer = ({ url }: PdfRenderProps ) => {
                 </Button>
 
                 <div className="flex items-center gap-1.5">
-                    <Input className="w-12 h-8" />
+                    <Input 
+                      {...register("page")} 
+                      className={ cn("w-12 h-8", errors.page && "focus-visible:ring-red-500") } 
+                      onKeyDown={(e) => {
+                        if( e.key === "Enter" ){
+                          handleSubmit(handlePageSubmit)()
+                        }
+                      }}
+                    />
                     <p className="text-zinc-700 text-sm space-x-1">
                       <span>/</span>
                       <span>{numPages ?? "x"}</span>
