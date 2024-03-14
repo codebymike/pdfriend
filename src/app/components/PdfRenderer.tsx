@@ -1,6 +1,6 @@
 "use client"
 
-import { ChevronDown, ChevronUp, Loader2, Search } from "lucide-react"
+import { ChevronDown, ChevronUp, Loader2, RotateCw, Search } from "lucide-react"
 import { Document, Page, pdfjs } from "react-pdf"
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
@@ -29,6 +29,7 @@ const PdfRenderer = ({ url }: PdfRenderProps ) => {
   const [ numPages, setNumPages ] = useState<number>()
   const [ currPage, setCurrPage ] = useState<number>(1)
   const [ scale, setScale ] = useState<number>(1)
+  const [ rotation, setRotation ] = useState<number>(0)
 
   const CustomPageValidator = z.object({
     page: z.string().refine((num) => Number(num) > 0 && Number(num) <= numPages!)
@@ -111,6 +112,10 @@ const PdfRenderer = ({ url }: PdfRenderProps ) => {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
+
+              <Button onClick={() => setRotation((prev) => prev + 90)} aria-label="rotate 90 degrees">
+                <RotateCw className="w-4 h-4" />
+              </Button>
             </div>
 
         </div>
@@ -141,6 +146,7 @@ const PdfRenderer = ({ url }: PdfRenderProps ) => {
                   width={width ? width : 1} 
                   pageNumber={currPage}
                   scale={scale}
+                  rotate={rotation}
                 />
               </Document>
             </div>
