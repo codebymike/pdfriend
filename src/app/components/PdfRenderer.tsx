@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { cn } from "@/lib/utils"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "./ui/dropdown-menu"
 import SimpleBar from "simplebar-react"
+import PdfFullscreen from "./PdfFullscreen"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
@@ -113,9 +114,14 @@ const PdfRenderer = ({ url }: PdfRenderProps ) => {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              <Button onClick={() => setRotation((prev) => prev + 90)} aria-label="rotate 90 degrees">
+              <Button 
+                onClick={() => setRotation((prev) => prev + 90)} 
+                aria-label="rotate 90 degrees"
+              >
                 <RotateCw className="w-4 h-4" />
               </Button>
+
+              <PdfFullscreen />
             </div>
 
         </div>
