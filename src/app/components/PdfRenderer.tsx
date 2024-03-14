@@ -31,6 +31,9 @@ const PdfRenderer = ({ url }: PdfRenderProps ) => {
   const [ currPage, setCurrPage ] = useState<number>(1)
   const [ scale, setScale ] = useState<number>(1)
   const [ rotation, setRotation ] = useState<number>(0)
+  const [ renderedScale, setRenderedScale ] = useState<number | null>(null)
+
+  const isLoading = renderedScale !== scale
 
   const CustomPageValidator = z.object({
     page: z.string().refine((num) => Number(num) > 0 && Number(num) <= numPages!)
@@ -150,12 +153,30 @@ const PdfRenderer = ({ url }: PdfRenderProps ) => {
                 }}
                 className="max-h-full"
                 >
+                { isLoading && renderedScale ? 
                 <Page 
                   width={width ? width : 1} 
                   pageNumber={currPage}
                   scale={scale}
                   rotate={rotation}
+                  key={"@" + renderedScale}
+                /> : null}
+
+                <Page 
+                  className={cn(isLoading ? "hidden" : "")}
+                  width={width ? width : 1} 
+                  pageNumber={currPage}
+                  scale={scale}
+                  rotate={rotation}
+                  key={"@" + scale}
+                  loading={
+                    <div className="flex justify-center">
+                      <Loader2 className="w-6 h-6 my-24 animate-spin" />
+                    </div>
+                  }
+                  onRenderSuccess={() => setRenderedScale(scale)}
                 />
+
               </Document>
             </div>
           </SimpleBar>
