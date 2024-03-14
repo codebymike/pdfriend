@@ -60,6 +60,7 @@ const PdfRenderer = ({ url }: PdfRenderProps ) => {
                   disabled={ currPage <= 1 }
                   onClick={() => {
                     setCurrPage((prev) => ( prev - 1 > 1 ? prev - 1 : 1 ))
+                    setValue("page", String(currPage - 1))
                   }}
                 >
                   <ChevronDown className="w-4 h-4" />
@@ -87,6 +88,7 @@ const PdfRenderer = ({ url }: PdfRenderProps ) => {
                   disabled={ numPages === undefined || currPage === numPages }
                   onClick={() => {
                     setCurrPage((prev) => ( prev + 1 > numPages! ? numPages! : prev + 1 ))
+                    setValue("page", String(currPage + 1))
                   }}
                 >
                   <ChevronUp className="w-4 h-4" />
