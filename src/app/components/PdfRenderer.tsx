@@ -87,6 +87,11 @@ const PdfRenderer = ({ url }: PdfRenderProps ) => {
                   <ChevronUp className="w-4 h-4" />
                 </Button>
             </div>
+
+            <div className="space-x-2">
+              
+            </div>
+
         </div>
 
         <div className="flex-1 w-full max-h-screen">
