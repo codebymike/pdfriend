@@ -3,7 +3,9 @@
 import Messages from "./Messages"
 import ChatInput from "./ChatInput"
 import { trpc } from '@/app/_trpc/client'
-import { Loader2, XCircle } from "lucide-react"
+import { ChevronLeft, Loader2, XCircle } from "lucide-react"
+import { buttonVariants } from "../ui/button"
+import Link from "next/link"
 
 interface ChatWrapperProps {
   fileId: string
@@ -32,6 +34,10 @@ const ChatWrapper = ({
               Your <span className="font-medium">Free</span> {' '}
               plan supports up to 5 pages per PDF.
             </p>
+            <Link href="/dashboad" className={buttonVariants({
+              variant: "secondary",
+              className: "mt-4"
+            })}><ChevronLeft className="h-3 w-3 mr-1.5" /> Back</Link>
           </div>
         </div>
         <ChatInput isDisabled />
