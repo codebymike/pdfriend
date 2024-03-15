@@ -32,7 +32,6 @@ export const appRouter = router({
 
   getUserFiles: privateProcedure.query(async ({ ctx }) => {
     const { userId } = ctx
-
     return await db.file.findMany({
       where: {
         userId,
@@ -42,17 +41,17 @@ export const appRouter = router({
 
   getFileUploadStatus: privateProcedure
     .input(z.object({ fileId: z.string() }))
-    .mutation( async ({ input, ctx }) => {
+    .query(async ({ input, ctx }) => {
       const file = await db.file.findFirst({
         where: {
           id: input.fileId,
-          userId: ctx.userId
-        }
+          userId: ctx.userId,
+        },
       })
 
-      if( !file ) return {status: "PENDING" as const}
+    if (!file) return { status: 'PENDING' as const }
 
-      return { status: file.uploadStatus }
+    return { status: file.uploadStatus }
   }),
 
   getFile: privateProcedure
