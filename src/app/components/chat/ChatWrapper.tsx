@@ -37,7 +37,10 @@ const ChatWrapper = ({
             <Link href="/dashboad" className={buttonVariants({
               variant: "secondary",
               className: "mt-4"
-            })}><ChevronLeft className="h-3 w-3 mr-1.5" /> Back</Link>
+            })}>
+              <ChevronLeft className="h-3 w-3 mr-1.5" />
+              Back
+            </Link>
           </div>
         </div>
         <ChatInput isDisabled />
