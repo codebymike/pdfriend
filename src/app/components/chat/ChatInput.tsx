@@ -1,3 +1,5 @@
+import { Textarea } from "../ui/textarea"
+
 interface ChatInputProps {
     isDisabled?: boolean
   }
@@ -9,7 +11,11 @@ const ChatInput = ({ isDisabled }: ChatInputProps) => {
             <div className="relative flex h-full flex-1 items-stretch md:flex-col">
                 <div className="relative flex flex-col w-full flex-grow p-4">
                     <div className="relative">
-                        
+
+                        <Textarea placeholder="Enter your question..." rows={1} maxRows={4}>
+
+                        </Textarea>
+
                     </div>
                 </div>
             </div>
