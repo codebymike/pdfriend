@@ -12,7 +12,13 @@ const ChatInput = ({ isDisabled }: ChatInputProps) => {
                 <div className="relative flex flex-col w-full flex-grow p-4">
                     <div className="relative">
 
-                        <Textarea placeholder="Enter your question..." rows={1} maxRows={4}>
+                        <Textarea 
+                            placeholder="Enter your question..." 
+                            rows={1} 
+                            autoFocus 
+                            maxRows={4}
+                            className="resize-none pr-12 text-base py-3 scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrollbar-touch"
+                        >
 
                         </Textarea>
 
