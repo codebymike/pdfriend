@@ -5,6 +5,7 @@ import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
 import { NextRequest } from "next/server";
 import { pinecone } from "@/lib/pinecone";
 import { PineconeStore } from '@langchain/pinecone';
+import { Openai } from "@/lib/openai"
 
 // asking a question of the PDF file
 export const POST = async (req: NextRequest) => {
@@ -52,7 +53,7 @@ export const POST = async (req: NextRequest) => {
 
     const results = await vectorStore.similaritySearch(message, 4)
 
-    const prevMessage = await db.message.findMany({
+    const prevMessages = await db.message.findMany({
         where: {
             fileId
         },
@@ -61,6 +62,18 @@ export const POST = async (req: NextRequest) => {
 
         },
         take: 6
+    })
+
+    const formattedMessage = prevMessages.map((msg) => ({
+        role: msg.isUserMessage ? "user" as const : "assistant" as const,
+        content: msg.text
+    }))
+
+    const response = await Openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        temperature: 0,
+        stream: true,
+        messages: []
     })
 
 }
