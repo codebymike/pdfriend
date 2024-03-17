@@ -1,7 +1,10 @@
 import { db } from '@/db';
 import { SendMessageValidator } from '@/lib/validators/SendMessageValidator';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
+import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
 import { NextRequest } from "next/server";
+import { pinecone } from "@/lib/pinecone";
+import { PineconeStore } from '@langchain/pinecone';
 
 // asking a question of the PDF file
 export const POST = async (req: NextRequest) => {
@@ -33,4 +36,20 @@ export const POST = async (req: NextRequest) => {
             fileId
         }
     })
+
+    // vectorise message
+    const pineconeIndex = pinecone.Index("pdffriend")
+
+    const embeddings = new OpenAIEmbeddings({
+        openAIApiKey: process.env.OPENAI_API_KEY
+    })
+
+    // find most relevant page
+    const vectorStore = await PineconeStore.fromExistingIndex(embeddings, {
+        pineconeIndex,
+        namespace: file.id
+    })
+
+    const results = await vectorStore.similaritySearch(message, 4)
+
 }
