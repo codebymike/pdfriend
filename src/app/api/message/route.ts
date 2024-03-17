@@ -25,5 +25,12 @@ export const POST = async (req: NextRequest) => {
 
     if( !file ) return new Response("Not Found", { status: 404 })
 
-    await db.message.create()
+    await db.message.create({
+        data: {
+            text: message,
+            isUserMessage: true,
+            userId,
+            fileId
+        }
+    })
 }
