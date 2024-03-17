@@ -52,4 +52,15 @@ export const POST = async (req: NextRequest) => {
 
     const results = await vectorStore.similaritySearch(message, 4)
 
+    const prevMessage = await db.message.findMany({
+        where: {
+            fileId
+        },
+        orderBy: {
+            createdAt: "asc"
+
+        },
+        take: 6
+    })
+
 }
