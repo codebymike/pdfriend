@@ -60,7 +60,14 @@ export const ourFileRouter = {
 
 
       } catch (error) {
-        
+        await db.file.update({
+          data: {
+            uploadStatus: "FAILED"
+          },
+          where: {
+            id: createdFile.id
+          }
+        })
       }
 
     }),
