@@ -2,6 +2,7 @@ import { db } from "@/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf"
+import { PineconeStore } from "@langchain/pinecone"
 import { pinecone } from "@/lib/pinecone";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai"
  
@@ -42,6 +43,8 @@ export const ourFileRouter = {
         const embeddings = new OpenAIEmbeddings({
           openAIApiKey: process.env.OPENAI_API_KEY
         })
+
+        await PineconeStore
 
 
       } catch (error) {
