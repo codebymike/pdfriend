@@ -6,6 +6,7 @@ import { NextRequest } from "next/server";
 import { pinecone } from "@/lib/pinecone";
 import { PineconeStore } from '@langchain/pinecone';
 import { Openai } from "@/lib/openai"
+import { OpenAIStream, StreamingTextResponse } from "ai"
 
 // asking a question of the PDF file
 export const POST = async (req: NextRequest) => {
@@ -99,6 +100,12 @@ export const POST = async (req: NextRequest) => {
         USER INPUT: ${message}`,
             },
         ],
+    })
+
+    const stream = OpenAIStream(response, {
+        async onCompletion(completion) {
+            
+        }
     })
 
 }
