@@ -1,7 +1,7 @@
 import { Send } from "lucide-react"
 import { Textarea } from "../ui/textarea"
 import { Button } from "../ui/button"
-import { useContext } from "react"
+import { useContext, useRef } from "react"
 import { ChatContext } from "./ChatContext"
 
 interface ChatInputProps {
@@ -10,7 +10,9 @@ interface ChatInputProps {
 
 const ChatInput = ({ isDisabled }: ChatInputProps) => {
 
-    const {addMessage, handleInputChange, isLoading, message} = useContext(ChatContext)
+    const { addMessage, handleInputChange, isLoading, message } = useContext(ChatContext)
+
+    const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   return (
     <div className="absolute bottom-0 left-0 w-full">
@@ -21,8 +23,16 @@ const ChatInput = ({ isDisabled }: ChatInputProps) => {
 
                         <Textarea 
                             placeholder="Enter your question..." 
+                            ref={textareaRef}
                             rows={1} 
-                            autoFocus 
+                            autoFocus
+                            onKeyDown={(e) => {
+                                if( e.key == "Enter" && !e.shiftKey ){
+                                    e.preventDefault()
+                                    addMessage()
+                                    textareaRef.current?.focus()
+                                }
+                            }}
                             maxRows={4}
                             className="resize-none pr-12 text-base py-3 scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrollbar-touch"
                         />
