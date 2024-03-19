@@ -2,6 +2,7 @@ import { trpc } from "@/app/_trpc/client"
 import { INFINITE_QUERY_LIMIT } from "@/config/infinite-query"
 import { Loader2 } from "lucide-react"
 import Skeleton from "react-loading-skeleton"
+import Message from "./Message"
 
 interface MessagesProps {
   fileId: string
