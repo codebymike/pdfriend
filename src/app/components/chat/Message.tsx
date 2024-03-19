@@ -1,6 +1,11 @@
 import { cn } from "@/lib/utils"
 
-const Message = () => {
+interface MessageProps {
+    message:
+    isNextMessage: boolean
+}
+
+const Message = ({ message, isNextMessage }: MessageProps) => {
   return (
     <div className={cn("flex items-end")}>
 
