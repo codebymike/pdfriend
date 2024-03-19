@@ -43,8 +43,8 @@ const Messages = ({fileId}: MessagesProps) => {
 
           const isNextMessageSamePerson = combinedMessages[i - 1]?.isUserMessage === combinedMessages[i]?.isUserMessage
 
-          if( i === combinedMessages.length - 1 ) return <Message />
-          else return <Message />
+          if( i === combinedMessages.length - 1 ) return <Message message={message} key={message.id} isNextMessageSamePerson={isNextMessageSamePerson} />
+          else return <Message message={message} key={message.id} isNextMessageSamePerson={isNextMessageSamePerson} />
         })
       ) : isLoading ? (
         <div className="w-full flex flex-col gap-2">
