@@ -60,7 +60,7 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
 
         await utils.getFileMessages.cancel()
 
-        const previousMessages - utils.getFileMessages.getInfiniteData()
+        const previousMessages = utils.getFileMessages.getInfiniteData()
 
         utils.getFileMessages.setInfiniteData(
             {fileId, limit: INFINITE_QUERY_LIMIT},
