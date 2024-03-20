@@ -165,25 +165,20 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
                                     return message
                                 })
                             }
-
                             return {
                                 ...page,
                                 messages: updatedMessages
                             }
                         }
-
                         return page
                     })
-
                     return {
                         ...old,
                         pages: updatedPages
                     }
                 }
-
             )
         }
-
     },
     onError: (_, __, context) => {
         setMessage(backupMessage.current)
