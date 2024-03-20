@@ -54,7 +54,7 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
 
         return response.body
     },
-    onMutate: async () => {
+    onMutate: async ({ message }) => {
         backupMessage.current = message
         setMessage("")
 
@@ -71,8 +71,32 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
                         pageParams: []
                     }
                 }
+                let newPages = [...old.pages]
+
+                let latestPage = newPages[0]!
+    
+                latestPage.messages = [{
+                    createdAt: new Date().toISOString(),
+                    id: crypto.randomUUID(),
+                    text: message,
+                    isUserMessage: true
+                },
+                ...latestPage.messages
+                ]
+                newPages[0] = latestPage
+
+                return {
+                    ...old,
+                    pages: newPages,
+                }
             }
         )
+
+        setIsLoading(true)
+
+        return {
+            previousMessages: previousMessages?.pages.flatMap((page) => page.messages)
+        }
     }
  })
 
