@@ -24,7 +24,7 @@ const Messages = ({ fileId }: MessagesProps) => {
       {
         getNextPageParam: (lastPage) =>
           lastPage?.nextCursor,
-        keepPreviousData: true,
+        // keepPreviousData: true,
       }
     )
 
