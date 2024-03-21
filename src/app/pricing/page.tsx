@@ -3,7 +3,10 @@ import MaxWidthWrapper from "../components/MaxWidthWrapper"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../components/ui/tooltip"
 import { PLANS } from "@/config/stripe"
 import { cn } from "@/lib/utils"
-import { Check, HelpCircle, Minus } from "lucide-react"
+import { ArrowRight, Check, HelpCircle, Minus } from "lucide-react"
+import Link from "next/link"
+import { buttonVariants } from "../components/ui/button"
+import UpgradeButton from "../components/UpgradeButton"
 
 const Page = async () => {
     const { getUser } = getKindeServerSession()
@@ -182,6 +185,35 @@ const Page = async () => {
                                             )
                                         )}
                                         </ul>
+
+                                        <div className='border-t border-gray-200' />
+
+                                        <div className='p-5'>
+                                            {plan === 'Free' ? (
+                                                <Link
+                                                href={
+                                                    user ? '/dashboard' : '/sign-in'
+                                                }
+                                                className={buttonVariants({
+                                                    className: 'w-full',
+                                                    variant: 'secondary',
+                                                })}>
+                                                {user ? 'Upgrade now' : 'Sign up'}
+                                                <ArrowRight className='h-5 w-5 ml-1.5' />
+                                                </Link>
+                                            ) : user ? (
+                                                <UpgradeButton />
+                                            ) : (
+                                                <Link
+                                                href='/sign-in'
+                                                className={buttonVariants({
+                                                    className: 'w-full',
+                                                })}>
+                                                {user ? 'Upgrade now' : 'Sign up'}
+                                                <ArrowRight className='h-5 w-5 ml-1.5' />
+                                                </Link>
+                                            )}
+                                        </div>
 
                                 </div>
                             )
