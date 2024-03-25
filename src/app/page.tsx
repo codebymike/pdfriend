@@ -104,7 +104,7 @@ export default function Home() {
                 Upload your PDF file
               </span>
               <span className="mt-2 text-zinc-700">
-                We'll process your file and make it ready for you to summarise.
+                We&apos;ll process your file and make it ready for you to summarise.
               </span>
             </div>
           </li>
@@ -118,7 +118,7 @@ export default function Home() {
                 Get your Summary
               </span>
               <span className="mt-2 text-zinc-700">
-                It's that simple. Try out PDFriend today - it really takes less than a minute.
+                It&apos;s that simple. Try out PDFriend today - it really takes less than a minute.
               </span>
             </div>
           </li>
