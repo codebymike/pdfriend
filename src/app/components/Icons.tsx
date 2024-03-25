@@ -1,6 +1,6 @@
 import { LucideProps, User } from "lucide-react"
 
-const Icons = {
+export const Icons = {
     user: User,
     logo: (props: LucideProps) => (
         <svg {...props} viewBox='0 0 24 24'>
@@ -9,5 +9,3 @@ const Icons = {
     )
     
 }
-
-export default Icons
