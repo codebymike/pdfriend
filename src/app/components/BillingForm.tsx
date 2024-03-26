@@ -70,11 +70,6 @@ const BillingForm = ({ subscriptionPlan }: BillingFormProps) => {
             </Card>
         </form>
     </MaxWidthWrapper>
-
-
-  return (
-    <div>BillingForm</div>
-  )
 }
 
 export default BillingForm

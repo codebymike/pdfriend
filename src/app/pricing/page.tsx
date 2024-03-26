@@ -118,8 +118,7 @@ const Page = async () => {
                                     <div className='flex h-20 items-center justify-center border-b border-t border-gray-200 bg-gray-50'>
                                         <div className='flex items-center space-x-1'>
                                             <p>
-                                            {quota.toLocaleString()} PDFs/mo
-                                            included
+                                            {quota.toLocaleString()} PDFs/mo included
                                             </p>
 
                                             <Tooltip delayDuration={300}>
@@ -127,8 +126,7 @@ const Page = async () => {
                                                 <HelpCircle className='h-4 w-4 text-zinc-500' />
                                             </TooltipTrigger>
                                             <TooltipContent className='w-80 p-2'>
-                                                How many PDFs you can upload per
-                                                month.
+                                                How many PDFs you can upload per month.
                                             </TooltipContent>
                                             </Tooltip>
                                         </div>
