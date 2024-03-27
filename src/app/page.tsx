@@ -17,7 +17,7 @@ export default function Home() {
           Chat with your <span className="text-blue-600">documents</span> in seconds!
         </h1>
         <p className="mt-5 max-w-prose text-zinc-700 sm:text-lg">
-          PDFriend lets you summarier PDF documents. Simply upload your file and start right away.
+          PDFriend lets you summarise PDF documents. Simply upload your file and start right away.
         </p>
 
         <Link 
