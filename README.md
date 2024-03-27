@@ -6,15 +6,15 @@ Features:
 - Streaming API Responses & Optimistic UI Updates
 - Type-safe Data Fetching Using tRPC & Zod
 - LangChain for AI Memory & Pinecone Vector Storage
-- Fully functional PDF viewer
+- Full-function PDF viewer and parser
 - 100% TypeScript
 
 Using:
 - NextJS (v14.x)
 - OpenAI + LangChain + Pinecone
-- Prisma (MySQL)
-- Kinde (Auth)
-- tRPC (Typed API)
+- Stripe
+- tRPC
+- Prisma ORM (MySQL)
+- Kinde Auth
 - Tailwind + Shadcn/ui
-- UploadThing
-- Stripe payments
+- UploadThing file storage
